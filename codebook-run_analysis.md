@@ -76,11 +76,8 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ```dataSubjectTest  <- read.table(file.path(".", "test" , "subject_test.txt"),col.names='Subject.Id')```    
 ```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)```      
 ```dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE)```    
-
 ##### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
 #####  ACT:  Bind the datasets
-
-
 ```dataActivity <- rbind(dataActivityTrain, dataActivityTest)```  
 ```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```  
 ```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ``` 
@@ -99,19 +96,19 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ``` Data <- subset(Data, select=SelectedNames) ``` 
 #####  ACT:  Check the structure of the dataframe "Data"
 ``` str(Data) ```  
-*A similar result to The following will appear after execution  
-'data.frame':  10299 obs. of  68 variables:  
-$ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...   
-$ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...  
-###  ......  
-###  ......*   
+*A similar result to The following will appear after execution*  
+*'data.frame':  10299 obs. of  68 variables:*    
+*$ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...*     
+*$ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...*    
+*   ......*    
+*   .....*    
 #####  ACT: Read Descriptive Activity Names
 ``` activityLabels  <- read.table(file.path(".","activity_labels.txt"), col.names=c('Activity.Id', 'Activity')) ```
 #####  ACT: check the names and activity id
 ``` head(activityLabels) ```
 *The following will appear after execution*  
-*   Activity.Id           Activity
-*   1    1            WALKING
+*         Activity.Id           Activity
+*   1              1            WALKING
 *   2              2   WALKING_UPSTAIRS
 *   3              3 WALKING_DOWNSTAIRS
 *   4              4            SITTING
@@ -205,14 +202,12 @@ $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...
 *    [68] "activity" 
 
 ####  ACT: Creating and writing final tidy dataset using the library plyr
-``` library(plyr);```  
- ``` Data2<-aggregate(. ~subject + activity, Data, mean) ```
+``` library(plyr);```    
+``` Data2<-aggregate(.~subject + activity, Data, mean) ```   
 ####  ACT: Data2 sorted as 'Subject' and then as 'Activity'
  ``` Data2<-Data2[order(Data2$subject,Data2$activity),] ```
 ####  ACT:  Check the contents of datra: print the header of tidy dataset
 ```  head(Data2) ```
 ####  ACT: write the tidydataset to a txt file
-``` write.table(Data2, file = "tidydata.txt",row.name=FALSE)``
+``` write.table(Data2, file = "tidydata.txt",row.name=FALSE)```
 *end of preparing teh tidy data set and saved as "tidydata.txt"*
-
-
