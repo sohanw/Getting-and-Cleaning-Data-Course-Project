@@ -3,7 +3,7 @@
 *This makes an attempt to explain the actions in the R Script*
 ##### Download the file and save as dataset.zip
 ######  Getting and Cleaning Data Course Project: R script called run_analysis.R
-setwd('C:/CourseraR')
+*setwd('C:/CourseraR'*
 #####  ACT: Download the file  unzip to the folder and save as dataset.zip
 
 ``` if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',destfile='dataset.zip')} ```  
@@ -135,8 +135,8 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ## BodyBody is replaced by Body 
 ```
 #####  ACT: check the names after appropriate labelling
-``` names(Data) ```
-*The following will appear after execution*
+``` names(Data) ```   
+*The following will appear after execution*   
 ```
 *    [1] "timeBodyAccelerometer-mean()-X"                
 *    [2] "timeBodyAccelerometer-mean()-Y"                
@@ -207,14 +207,14 @@ Levels of Varible Activity come from "activity_labels.txt"*
 *    [67] "subject"                                       
 *    [68] "activity" 
 ```
-####  ACT: Creating and writing final tidy dataset using the library plyr
+#####  ACT: Creating and writing final tidy dataset using the library plyr
 ` library(plyr); `      
 ` Data2<-aggregate(.~subject + activity, Data, mean) `   
-####  ACT: Data2 sorted as 'Subject' and then as 'Activity'
+#####  ACT: Data2 sorted as 'Subject' and then as 'Activity'
  ` Data2<-Data2[order(Data2$subject,Data2$activity),] `  
-####  ACT:  Check the contents of datra: print the header of tidy dataset
+#####  ACT:  Check the contents of datra: print the header of tidy dataset
 `  head(Data2) `  
-####  ACT: write the tidydataset to a txt file
+#####  ACT: write the tidydataset to a txt file
 ``` write.table(Data2, file = "tidydata.txt",row.name=FALSE) ```
 ```
 ## end of preparing teh tidy data set and saved as "tidydata.txt"
