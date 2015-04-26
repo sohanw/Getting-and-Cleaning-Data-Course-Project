@@ -6,8 +6,8 @@
 setwd('C:/CourseraR')
 #####  ACT: Download the file  unzip to the folder and save as dataset.zip
 
-```if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',destfile='dataset.zip')} ```  
-```else { warning("Already Downloaded from the given URL and dataset.zip is in working dir: Moving to Unzip! ")}```
+``` if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',destfile='dataset.zip')} ```  
+``` else { warning("Already Downloaded from the given URL and dataset.zip is in working dir: Moving to Unzip! ")}```
 
 *Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'*
 
@@ -23,12 +23,10 @@ setwd('C:/CourseraR')
 ``` getwd() ```   
 
 
-```files  <- list.files( "." , recursive=TRUE) ```  
-
+``` files  <- list.files( "." , recursive=TRUE) ```  
 ``` files ```   
   
 *A result similar to the following will be displayed after execution*  
-
 
 * [1] "activity_labels.txt"                         
 * [2] "features.txt"                                
@@ -86,56 +84,32 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ```dataActivity <- rbind(dataActivityTrain, dataActivityTest)```  
 ```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```  
 ```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ``` 
-
-
 #####  ACT:  Set names to variables
-
-
-```names(dataSubject)<-c("subject")```    
-```names(dataActivity)<- c("activity")```    
-```dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE)```    
-```names(dataFeatures) <- dataFeaturesNames$V2```  
-
-
+```names(dataSubject)<-c("subject") ```    
+``` names(dataActivity)<- c("activity") ```    
+``` dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE) ```    
+``` names(dataFeatures) <- dataFeaturesNames$V2 ```  
 #####  ACT: Merge columns to get the dataframe 'Data' for all data
-
-
-```dataCombine <- cbind(dataSubject, dataActivity)```   
-Data <- cbind(dataFeatures, dataCombine) ```  
-
-
+``` dataCombine <- cbind(dataSubject, dataActivity)```   
+``` Data <- cbind(dataFeatures, dataCombine) ```  
 #####  ACT:  subset name of Features by measurements on the mean and std dev
-
-
-```subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```
-
+``` subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```
 #####  ACT:  subset the dataframe "data" by selected names of features
-
-```SelectedNames  <- c(as.character(subdataFeaturesNames), "subject", "activity")``` 
-
-```Data <- subset(Data, select=SelectedNames) ``` 
-
+``` SelectedNames  <- c(as.character(subdataFeaturesNames), "subject", "activity") ``` 
+``` Data <- subset(Data, select=SelectedNames) ``` 
 #####  ACT:  Check the structure of the dataframe "Data"
-
-```str(Data) ```  
-
+``` str(Data) ```  
 *A similar result to The following will appear after execution  
-
 'data.frame':  10299 obs. of  68 variables:  
 $ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...   
 $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...  
 ###  ......  
 ###  ......*   
-
 #####  ACT: Read Descriptive Activity Names
-
-```activityLabels  <- read.table(file.path(".","activity_labels.txt"), col.names=c('Activity.Id', 'Activity')) ```
-
+``` activityLabels  <- read.table(file.path(".","activity_labels.txt"), col.names=c('Activity.Id', 'Activity')) ```
 #####  ACT: check the names and activity id
-
-```head(activityLabels) ```
-
-*The following will appear after execution
+``` head(activityLabels) ```
+*The following will appear after execution*  
 *   Activity.Id           Activity
 *   1           1            WALKING
 *   2           2   WALKING_UPSTAIRS
@@ -143,15 +117,13 @@ $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...
 *   4           4            SITTING
 *   5           5           STANDING
 *   6           6             LAYING
-
 ####  ACT: Appropriately Labelling the dataset with descrptive variable names
-
-```names(Data)<-gsub("^t", "time", names(Data))
-names(Data)<-gsub("^f", "frequency", names(Data))
-names(Data)<-gsub("Acc", "Accelerometer", names(Data))
-names(Data)<-gsub("Gyro", "Gyroscope", names(Data))
-names(Data)<-gsub("Mag", "Magnitude", names(Data))
-names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
+``` names(Data)<-gsub("^t", "time", names(Data)) ```  
+``` names(Data)<-gsub("^f", "frequency", names(Data)) ```
+``` names(Data)<-gsub("Acc", "Accelerometer", names(Data))```  
+``` names(Data)<-gsub("Gyro", "Gyroscope", names(Data)) ```   
+``` names(Data)<-gsub("Mag", "Magnitude", names(Data))  ```  
+``` names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
 
 * The following was the target of foreging commands *
 * prefix t is replaced by time*
@@ -161,9 +133,8 @@ names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
 * Mag is replaced by Magnitude*
 * BodyBody is replaced by Body*
 #####  ACT: check the names after appropriate labelling
-```names(Data) ```
+``` names(Data) ```
 *The following will appear after execution*
-
 *    [1] "timeBodyAccelerometer-mean()-X"                
 *    [2] "timeBodyAccelerometer-mean()-Y"                
 *    [3] "timeBodyAccelerometer-mean()-Z"                
@@ -234,14 +205,14 @@ names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
 *    [68] "activity" 
 
 ####  ACT: Creating and writing final tidy dataset using the library plyr
-```library(plyr);
-Data2<-aggregate(. ~subject + activity, Data, mean) ```
+``` library(plyr);```  
+ ``` Data2<-aggregate(. ~subject + activity, Data, mean) ```
 ####  ACT: Data2 sorted as 'Subject' and then as 'Activity'
-```Data2<-Data2[order(Data2$subject,Data2$activity),] ```
+ ``` Data2<-Data2[order(Data2$subject,Data2$activity),] ```
 ####  ACT:  Check the contents of datra: print the header of tidy dataset
-```head(Data2) ```
+```  head(Data2) ```
 ####  ACT: write the tidydataset to a txt file
-```write.table(Data2, file = "tidydata.txt",row.name=FALSE)``
+``` write.table(Data2, file = "tidydata.txt",row.name=FALSE)``
 *end of preparing teh tidy data set and saved as "tidydata.txt"*
 
 
