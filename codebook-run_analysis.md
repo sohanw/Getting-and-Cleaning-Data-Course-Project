@@ -64,13 +64,12 @@ files```
 *FURTHER NOTES ON THE DATA FROM THE ASSIGNMENT EXPLANATIONS*
 
 *From the picture and the related files, we can see:  Reference link: https://class.coursera.org/getdata-008/forum/thread?thread_id=24  
-Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"*
-
-*values of Varible Subject consist of data from "subject_train.txt" and subject_test.txt"*
-*Values of Varibles Features consist of data from "X_train.txt" and "X_test.txt"*
-*Names of Varibles Features come from "features.txt"*
-*levels of Varible Activity come from "activity_labels.txt"
-*So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame.*
+Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"  
+Values of Varible Subject consist of data from "subject_train.txt" and subject_test.txt"  
+Values of Varibles Features consist of data from "X_train.txt" and "X_test.txt"  
+Names of Varibles Features come from "features.txt"  
+Levels of Varible Activity come from "activity_labels.txt"  
+So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame.*
 
 #####  ACT:  Read data from the files and assign to objects*
 ```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')
