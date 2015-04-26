@@ -1,5 +1,5 @@
 ## Getting-and-Cleaning-Data-Course-Project 1
-created for the Getting and Cleaning Data Course Project
+Created for the Getting and Cleaning Data Course Project
 
 This repo contains my course project to Coursera "Getting And Cleaning Data" course that is part of Data Science specialization. There is only one script called run_analysis.R.
 
