@@ -68,16 +68,19 @@ Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"
 Values of Varible Subject consist of data from "subject_train.txt" and subject_test.txt"  
 Values of Varibles Features consist of data from "X_train.txt" and "X_test.txt"  
 Names of Varibles Features come from "features.txt"  
-Levels of Varible Activity come from "activity_labels.txt"  
-So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame.*
+Levels of Varible Activity come from "activity_labels.txt"*
 
-#####  ACT:  Read data from the files and assign to objects*
-```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')
+*So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame.*
+
+#####  ACT:  Read data from the files and assign to objects
+
+```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')  
 dataActivityTest  <- read.table(file.path( ".", "test" , "Y_test.txt" ),col.names='Activity.Id') ```
-```dataSubjectTrain <- read.table(file.path(".", "train", "subject_train.txt"),col.names='Subject.Id')
+```dataSubjectTrain <- read.table(file.path(".", "train", "subject_train.txt"),col.names='Subject.Id')  
 dataSubjectTest  <- read.table(file.path(".", "test" , "subject_test.txt"),col.names='Subject.Id') ```
-```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)
+```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)  
 dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE) ```
+
 #### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
 #####  ACT:  Bind the datasets
 ```dataActivity <- rbind(dataActivityTrain, dataActivityTest)
