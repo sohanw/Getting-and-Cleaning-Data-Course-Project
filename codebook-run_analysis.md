@@ -27,7 +27,7 @@ setwd('C:/CourseraR')
 ``` files ```   
   
 *A result similar to the following will be displayed after execution*  
-
+```
 * [1] "activity_labels.txt"                         
 * [2] "features.txt"                                
 * [3] "features_info.txt"                           
@@ -56,16 +56,16 @@ setwd('C:/CourseraR')
 * [26] "train/subject_train.txt"                     
 * [27] "train/X_train.txt"                           
 * [28] "train/y_train.txt" *
-
+```
 *FURTHER NOTES ON THE DATA FROM THE ASSIGNMENT EXPLANATIONS*  
-
-*From the picture and the related files, we can see:  Reference link: https://class.coursera.org/getdata-008/forum/thread?thread_id=24  
+```
+From the picture and the related files, we can see:  Reference link: https://class.coursera.org/getdata-008/forum/thread?thread_id=24  
 Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"  
 Values of Varible Subject consist of data from "subject_train.txt" and subject_test.txt"  
 Values of Varibles Features consist of data from "X_train.txt" and "X_test.txt"  
 Names of Varibles Features come from "features.txt"  
 Levels of Varible Activity come from "activity_labels.txt"*
-
+```
 *So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame.*
 
 #####  ACT:  Read data from the files and assign to objects
@@ -78,16 +78,16 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ```dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE)```    
 ##### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
 #####  ACT:  Bind the datasets
-```dataActivity <- rbind(dataActivityTrain, dataActivityTest)```  
-```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```  
-```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ``` 
+```dataActivity <- rbind(dataActivityTrain, dataActivityTest)```    
+```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```    
+```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ```   
 #####  ACT:  Set names to variables
-```names(dataSubject)<-c("subject") ```    
-``` names(dataActivity)<- c("activity") ```    
-``` dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE) ```    
-``` names(dataFeatures) <- dataFeaturesNames$V2 ```  
+```names(dataSubject)<-c("subject") ```      
+``` names(dataActivity)<- c("activity") ```      
+``` dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE) ```      
+``` names(dataFeatures) <- dataFeaturesNames$V2 ```    
 #####  ACT: Merge columns to get the dataframe 'Data' for all data
-``` dataCombine <- cbind(dataSubject, dataActivity)```   
+``` dataCombine <- cbind(dataSubject, dataActivity) ```   
 ``` Data <- cbind(dataFeatures, dataCombine) ```  
 #####  ACT:  subset name of Features by measurements on the mean and std dev
 ``` subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```
@@ -99,7 +99,7 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ```
 ##  A similar result to The following will appear after execution     
 ##  'data.frame':  10299 obs. of  68 variables:*    
-##  tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...        
+##  tBodyAcc-mean()-X            : num  0.289 0.278 0.28 0.279 0.277 ...        
 ##  $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...      
 ##   ......      
 ##  .....  
@@ -118,24 +118,26 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ##   5              5           STANDING
 ##   6              6             LAYING
 ```
-####  ACT: Appropriately Labelling the dataset with descrptive variable names
+#####  ACT: Appropriately Labelling the dataset with descrptive variable names
 ``` names(Data)<-gsub("^t", "time", names(Data)) ```  
 ``` names(Data)<-gsub("^f", "frequency", names(Data)) ```
 ``` names(Data)<-gsub("Acc", "Accelerometer", names(Data))```  
 ``` names(Data)<-gsub("Gyro", "Gyroscope", names(Data)) ```   
 ``` names(Data)<-gsub("Mag", "Magnitude", names(Data))  ```  
 ``` names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
-
-* The following was the target of foreging commands *
-* prefix t is replaced by time*
-* prefix f is replaced by frequency*
-* Acc is replaced by Accelerometer*
-* Gyro is replaced by Gyroscope*
-* Mag is replaced by Magnitude*
-* BodyBody is replaced by Body*
+```
+## The following was the target of foreging commands 
+## prefix t is replaced by time
+## prefix f is replaced by frequency
+## Acc is replaced by Accelerometer*
+## Gyro is replaced by Gyroscope
+## Mag is replaced by Magnitude
+## BodyBody is replaced by Body 
+```
 #####  ACT: check the names after appropriate labelling
 ``` names(Data) ```
 *The following will appear after execution*
+```
 *    [1] "timeBodyAccelerometer-mean()-X"                
 *    [2] "timeBodyAccelerometer-mean()-Y"                
 *    [3] "timeBodyAccelerometer-mean()-Z"                
@@ -204,7 +206,7 @@ Levels of Varible Activity come from "activity_labels.txt"*
 *    [66] "frequencyBodyGyroscopeJerkMagnitude-std()"     
 *    [67] "subject"                                       
 *    [68] "activity" 
-
+```
 ####  ACT: Creating and writing final tidy dataset using the library plyr
 ` library(plyr); `      
 ` Data2<-aggregate(.~subject + activity, Data, mean) `   
@@ -213,5 +215,7 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ####  ACT:  Check the contents of datra: print the header of tidy dataset
 `  head(Data2) `  
 ####  ACT: write the tidydataset to a txt file
-``` write.table(Data2, file = "tidydata.txt",row.name=FALSE)```
-*end of preparing teh tidy data set and saved as "tidydata.txt"*
+``` write.table(Data2, file = "tidydata.txt",row.name=FALSE) ```
+```
+## end of preparing teh tidy data set and saved as "tidydata.txt"
+```
