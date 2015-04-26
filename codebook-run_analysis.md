@@ -3,7 +3,7 @@
 
 ### Getting and Cleaning Data Course Project the CODE BOOK for,
 ### R script called run_analysis.R
-This makes an attempt to explain the actions in the R Script
+*This makes an attempt to explain the actions in the R Script*
 ##### Download the file and save as dataset.zip
 ######  Getting and Cleaning Data Course Project: R script called run_analysis.R
 setwd('C:/CourseraR')
@@ -15,7 +15,7 @@ if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfro
 
 #######------------------------------------------------------------------
 
-Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'
+*Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'*
 
 #######------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ if (!file.exists('UCI HAR Dataset')) { warning("File does not exist: unzipping t
 
 #######------------------------------------------------------------------
 
-unzipped files are in the folder UCI HAR Dataset. 
+*unzipped files are in the folder UCI HAR Dataset.* 
 
 #####  ACT: Change the working directory to suit the data folder. ensure the working directory is correct
 
