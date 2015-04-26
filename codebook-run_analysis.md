@@ -217,5 +217,5 @@ Levels of Varible Activity come from "activity_labels.txt"*
 #####  ACT: write the tidydataset to a txt file
 ``` write.table(Data2, file = "tidydata.txt",row.name=FALSE) ```
 ```
-## end of preparing teh tidy data set and saved as "tidydata.txt"
+## end of preparing the tidy data set and saved as "tidydata.txt"
 ```
