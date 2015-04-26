@@ -11,19 +11,14 @@ setwd('C:/CourseraR')
 ------------------------------------------------------------------
 if (!file.exists('dataset.zip')) {
 download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',
-              destfile='dataset.zip')
-} else {
-   warning("Already Downloaded from the given URL and dataset.zip is in working dir: Moving to Unzip! ")
-}
+              destfile='dataset.zip')} else { warning("Already Downloaded from the given URL and dataset.zip is in working dir: Moving to Unzip! ")}
 -----------------------------------------------------------------
 Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'
 ----------------------------------------------------------------------
 if (!file.exists('UCI HAR Dataset')) {
   warning("File does not exist: unzipping the file ' dataset.zip '")
-  unzip('dataset.zip')  
-} else {
-  warning("Folder 'UCI HAR Dataset' already unzipped - moving forward ")
-}
+  unzip('dataset.zip')} else {
+  warning("Folder 'UCI HAR Dataset' already unzipped - moving forward ")}
 -----------------------------------------------------------------
 unzipped files are in the folder UCI HAR Dataset. 
 #####  ACT: Change the working directory to suit the data folder. ensure the working directory is correct
