@@ -29,10 +29,9 @@ getwd()```
 #####  ACT: Get the list of files
 
 ```files  <- list.files( "." , recursive=TRUE)```  
-```files```  
+```files```
 
 *A result similar to the following will be displayed after execution*
-
 * [1] "activity_labels.txt"                         
 * [2] "features.txt"                                
 * [3] "features_info.txt"                           
@@ -213,7 +212,7 @@ Data2<-aggregate(. ~subject + activity, Data, mean) ```
 ####  ACT:  Check the contents of datra: print the header of tidy dataset
 ```head(Data2) ```
 ####  ACT: write the tidydataset to a txt file
-```write.table(Data2, file = "tidydata.txt",row.name=FALSE) ```
-* end of preparing teh tidy data set and saved as "tidydata.txt"*
+```write.table(Data2, file = "tidydata.txt",row.name=FALSE)``
+*end of preparing teh tidy data set and saved as "tidydata.txt"*
 
 
