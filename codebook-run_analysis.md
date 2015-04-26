@@ -12,26 +12,23 @@ setwd('C:/CourseraR')
 *Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'*
 
 ```if (!file.exists('UCI HAR Dataset')) { warning("File does not exist: unzipping the file ' dataset.zip '")
-  unzip('dataset.zip')}```  
+  unzip('dataset.zip')}```   
   ```else {warning("Folder 'UCI HAR Dataset' already unzipped - moving forward ")}```
   
 *unzipped files are in the folder UCI HAR Dataset.*
 
 #####  ACT: Change the working directory to suit the data folder. ensure the working directory is correct
 
-```setwd('UCI HAR Dataset')```  
-```getwd()```
+```setwd('UCI HAR Dataset')```   
 
-*The following will be displayed after execution*
+getwd()  
 
-* [1] "C:/CourseraR/UCI HAR Dataset"*
- 
-#####  ACT: Get the list of files
 
-```files  <- list.files( "." , recursive=TRUE)```    
-```files```
+```files  <- list.files( "." , recursive=TRUE)```  
 
-*A result similar to the following will be displayed after execution*
+files 
+
+*A result similar to the following will be displayed after execution*  
 
 
 * [1] "activity_labels.txt"                         
@@ -85,34 +82,60 @@ Levels of Varible Activity come from "activity_labels.txt"*
 
 ##### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
 #####  ACT:  Bind the datasets
+
+
 ```dataActivity <- rbind(dataActivityTrain, dataActivityTest)```  
 ```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```  
-```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ```  
+```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ``` 
+
+
 #####  ACT:  Set names to variables
+
+
 ```names(dataSubject)<-c("subject")```    
 ```names(dataActivity)<- c("activity")```    
 ```dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE)```    
-```names(dataFeatures) <- dataFeaturesNames$V2```    
+```names(dataFeatures) <- dataFeaturesNames$V2```  
+
+
 #####  ACT: Merge columns to get the dataframe 'Data' for all data
+
+
 ```dataCombine <- cbind(dataSubject, dataActivity)```   
 Data <- cbind(dataFeatures, dataCombine) ```  
+
+
 #####  ACT:  subset name of Features by measurements on the mean and std dev
-```subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```  
+
+
+```subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```
+
 #####  ACT:  subset the dataframe "data" by selected names of features
-```SelectedNames  <- c(as.character(subdataFeaturesNames), "subject", "activity")```   
-```Data <- subset(Data, select=SelectedNames) ```  
+
+```SelectedNames  <- c(as.character(subdataFeaturesNames), "subject", "activity")``` 
+
+```Data <- subset(Data, select=SelectedNames) ``` 
+
 #####  ACT:  Check the structure of the dataframe "Data"
+
 ```str(Data) ```  
+
 *A similar result to The following will appear after execution  
+
 'data.frame':  10299 obs. of  68 variables:  
-$ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...  
+$ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...   
 $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...  
 ###  ......  
-###  ......*  
+###  ......*   
+
 #####  ACT: Read Descriptive Activity Names
+
 ```activityLabels  <- read.table(file.path(".","activity_labels.txt"), col.names=c('Activity.Id', 'Activity')) ```
+
 #####  ACT: check the names and activity id
+
 ```head(activityLabels) ```
+
 *The following will appear after execution
 *   Activity.Id           Activity
 *   1           1            WALKING
@@ -121,13 +144,16 @@ $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...
 *   4           4            SITTING
 *   5           5           STANDING
 *   6           6             LAYING
+
 ####  ACT: Appropriately Labelling the dataset with descrptive variable names
+
 ```names(Data)<-gsub("^t", "time", names(Data))
 names(Data)<-gsub("^f", "frequency", names(Data))
 names(Data)<-gsub("Acc", "Accelerometer", names(Data))
 names(Data)<-gsub("Gyro", "Gyroscope", names(Data))
 names(Data)<-gsub("Mag", "Magnitude", names(Data))
 names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
+
 * The following was the target of foreging commands *
 * prefix t is replaced by time*
 * prefix f is replaced by frequency*
@@ -137,7 +163,8 @@ names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
 * BodyBody is replaced by Body*
 #####  ACT: check the names after appropriate labelling
 ```names(Data) ```
-* The following will appear after execution
+*The following will appear after execution*
+
 *    [1] "timeBodyAccelerometer-mean()-X"                
 *    [2] "timeBodyAccelerometer-mean()-Y"                
 *    [3] "timeBodyAccelerometer-mean()-Z"                
@@ -145,67 +172,68 @@ names(Data)<-gsub("BodyBody", "Body", names(Data)) ```
 *    [5] "timeBodyAccelerometer-std()-Y"                 
 *    [6] "timeBodyAccelerometer-std()-Z"                 
 *    [7] "timeGravityAccelerometer-mean()-X"             
-*    [8] "timeGravityAccelerometer-mean()-Y"             *
-*    [9] "timeGravityAccelerometer-mean()-Z"             *
-*    [10] "timeGravityAccelerometer-std()-X"              *
-*    [11] "timeGravityAccelerometer-std()-Y"              *
-*    [12] "timeGravityAccelerometer-std()-Z"              *
-*    [13] "timeBodyAccelerometerJerk-mean()-X"            *
-*    [14] "timeBodyAccelerometerJerk-mean()-Y"            *
-*    [15] "timeBodyAccelerometerJerk-mean()-Z"            *
-*    [16] "timeBodyAccelerometerJerk-std()-X"             *
-*    [17] "timeBodyAccelerometerJerk-std()-Y"             *
-*    [18] "timeBodyAccelerometerJerk-std()-Z"             *
-*    [19] "timeBodyGyroscope-mean()-X"                    *
-*    [20] "timeBodyGyroscope-mean()-Y"                    *
-*    [21] "timeBodyGyroscope-mean()-Z"                    *
-*    [22] "timeBodyGyroscope-std()-X"                     *
-*    [23] "timeBodyGyroscope-std()-Y"                     *
-*    [24] "timeBodyGyroscope-std()-Z"                     *
-*    [25] "timeBodyGyroscopeJerk-mean()-X"                *
-*    [26] "timeBodyGyroscopeJerk-mean()-Y"                *
-*    [27] "timeBodyGyroscopeJerk-mean()-Z"                *
-*    [28] "timeBodyGyroscopeJerk-std()-X"                 *
-*    [29] "timeBodyGyroscopeJerk-std()-Y"                 *
-*    [30] "timeBodyGyroscopeJerk-std()-Z"                 *
-*    [31] "timeBodyAccelerometerMagnitude-mean()"         *
-*    [32] "timeBodyAccelerometerMagnitude-std()"          *
-*    [33] "timeGravityAccelerometerMagnitude-mean()"      *
-*    [34] "timeGravityAccelerometerMagnitude-std()"       *
-*    [35] "timeBodyAccelerometerJerkMagnitude-mean()"     *
-*    [36] "timeBodyAccelerometerJerkMagnitude-std()"      *
-*    [37] "timeBodyGyroscopeMagnitude-mean()"             *
-*    [38] "timeBodyGyroscopeMagnitude-std()"              *
-*    [39] "timeBodyGyroscopeJerkMagnitude-mean()"         *
-*    [40] "timeBodyGyroscopeJerkMagnitude-std()"          *
-*    [41] "frequencyBodyAccelerometer-mean()-X"           *
-*    [42] "frequencyBodyAccelerometer-mean()-Y"           *
-*    [43] "frequencyBodyAccelerometer-mean()-Z"           *
-*    [44] "frequencyBodyAccelerometer-std()-X"            *
-*    [45] "frequencyBodyAccelerometer-std()-Y"            *
-*    [46] "frequencyBodyAccelerometer-std()-Z"            *
-*    [47] "frequencyBodyAccelerometerJerk-mean()-X"       *
-*    [48] "frequencyBodyAccelerometerJerk-mean()-Y"       *
-*    [49] "frequencyBodyAccelerometerJerk-mean()-Z"       *
-*    [50] "frequencyBodyAccelerometerJerk-std()-X"        *
-*    [51] "frequencyBodyAccelerometerJerk-std()-Y"        *
-*    [52] "frequencyBodyAccelerometerJerk-std()-Z"        *
-*    [53] "frequencyBodyGyroscope-mean()-X"               *
-*    [54] "frequencyBodyGyroscope-mean()-Y"               *
-*    [55] "frequencyBodyGyroscope-mean()-Z"               *
-*    [56] "frequencyBodyGyroscope-std()-X"                *
-*    [57] "frequencyBodyGyroscope-std()-Y"                *
-*    [58] "frequencyBodyGyroscope-std()-Z"                *
-*    [59] "frequencyBodyAccelerometerMagnitude-mean()"    *
-*    [60] "frequencyBodyAccelerometerMagnitude-std()"     *
-*    [61] "frequencyBodyAccelerometerJerkMagnitude-mean()"*
-*    [62] "frequencyBodyAccelerometerJerkMagnitude-std()"*
-*    [63] "frequencyBodyGyroscopeMagnitude-mean()"        *
-*    [64] "frequencyBodyGyroscopeMagnitude-std()"         *
-*    [65] "frequencyBodyGyroscopeJerkMagnitude-mean()"    *
-*    [66] "frequencyBodyGyroscopeJerkMagnitude-std()"     *
-*    [67] "subject"                                       *
-*    [68] "activity" *
+*    [8] "timeGravityAccelerometer-mean()-Y"            
+*    [9] "timeGravityAccelerometer-mean()-Z"            
+*    [10] "timeGravityAccelerometer-std()-X"            
+*    [11] "timeGravityAccelerometer-std()-Y"            
+*    [12] "timeGravityAccelerometer-std()-Z"            
+*    [13] "timeBodyAccelerometerJerk-mean()-X"          
+*    [14] "timeBodyAccelerometerJerk-mean()-Y"          
+*    [15] "timeBodyAccelerometerJerk-mean()-Z"         
+*    [16] "timeBodyAccelerometerJerk-std()-X"           
+*    [17] "timeBodyAccelerometerJerk-std()-Y"           
+*    [18] "timeBodyAccelerometerJerk-std()-Z"           
+*    [19] "timeBodyGyroscope-mean()-X"                   
+*    [20] "timeBodyGyroscope-mean()-Y"                  
+*    [21] "timeBodyGyroscope-mean()-Z"                  
+*    [22] "timeBodyGyroscope-std()-X"                  
+*    [23] "timeBodyGyroscope-std()-Y"                 
+*    [24] "timeBodyGyroscope-std()-Z"                
+*    [25] "timeBodyGyroscopeJerk-mean()-X"               
+*    [26] "timeBodyGyroscopeJerk-mean()-Y"               
+*    [27] "timeBodyGyroscopeJerk-mean()-Z"               
+*    [28] "timeBodyGyroscopeJerk-std()-X"               
+*    [29] "timeBodyGyroscopeJerk-std()-Y"               
+*    [30] "timeBodyGyroscopeJerk-std()-Z"               
+*    [31] "timeBodyAccelerometerMagnitude-mean()"        
+*    [32] "timeBodyAccelerometerMagnitude-std()"         
+*    [33] "timeGravityAccelerometerMagnitude-mean()"     
+*    [34] "timeGravityAccelerometerMagnitude-std()"      
+*    [35] "timeBodyAccelerometerJerkMagnitude-mean()"     
+*    [36] "timeBodyAccelerometerJerkMagnitude-std()"      
+*    [37] "timeBodyGyroscopeMagnitude-mean()"            
+*    [38] "timeBodyGyroscopeMagnitude-std()"             
+*    [39] "timeBodyGyroscopeJerkMagnitude-mean()"        
+*    [40] "timeBodyGyroscopeJerkMagnitude-std()"         
+*    [41] "frequencyBodyAccelerometer-mean()-X"          
+*    [42] "frequencyBodyAccelerometer-mean()-Y"          
+*    [43] "frequencyBodyAccelerometer-mean()-Z"          
+*    [44] "frequencyBodyAccelerometer-std()-X"            
+*    [45] "frequencyBodyAccelerometer-std()-Y"            
+*    [46] "frequencyBodyAccelerometer-std()-Z"            
+*    [47] "frequencyBodyAccelerometerJerk-mean()-X"      
+*    [48] "frequencyBodyAccelerometerJerk-mean()-Y"     
+*    [49] "frequencyBodyAccelerometerJerk-mean()-Z"       
+*    [50] "frequencyBodyAccelerometerJerk-std()-X"        
+*    [51] "frequencyBodyAccelerometerJerk-std()-Y"        
+*    [52] "frequencyBodyAccelerometerJerk-std()-Z"        
+*    [53] "frequencyBodyGyroscope-mean()-X"               
+*    [54] "frequencyBodyGyroscope-mean()-Y"               
+*    [55] "frequencyBodyGyroscope-mean()-Z"               
+*    [56] "frequencyBodyGyroscope-std()-X"                
+*    [57] "frequencyBodyGyroscope-std()-Y"                
+*    [58] "frequencyBodyGyroscope-std()-Z"                
+*    [59] "frequencyBodyAccelerometerMagnitude-mean()"    
+*    [60] "frequencyBodyAccelerometerMagnitude-std()"     
+*    [61] "frequencyBodyAccelerometerJerkMagnitude-mean()"
+*    [62] "frequencyBodyAccelerometerJerkMagnitude-std()"
+*    [63] "frequencyBodyGyroscopeMagnitude-mean()"        
+*    [64] "frequencyBodyGyroscopeMagnitude-std()"         
+*    [65] "frequencyBodyGyroscopeJerkMagnitude-mean()"    
+*    [66] "frequencyBodyGyroscopeJerkMagnitude-std()"     
+*    [67] "subject"                                       
+*    [68] "activity" 
+
 ####  ACT: Creating and writing final tidy dataset using the library plyr
 ```library(plyr);
 Data2<-aggregate(. ~subject + activity, Data, mean) ```
