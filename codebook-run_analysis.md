@@ -14,61 +14,62 @@ else { warning("Already Downloaded from the given URL and dataset.zip is in work
 ```if (!file.exists('UCI HAR Dataset')) { warning("File does not exist: unzipping the file ' dataset.zip '")
   unzip('dataset.zip')} else {warning("Folder 'UCI HAR Dataset' already unzipped - moving forward ")}```
   
-*unzipped files are in the folder UCI HAR Dataset.* 
+*unzipped files are in the folder UCI HAR Dataset.*
 
 #####  ACT: Change the working directory to suit the data folder. ensure the working directory is correct
 
 ```setwd('UCI HAR Dataset')
 getwd()```
 
-* The following will be displayed after execution*
+*The following will be displayed after execution*
 
 * [1] "C:/CourseraR/UCI HAR Dataset"*
-* 
+ 
 #####  ACT: Get the list of files
 
 ```files  <- list.files( "." , recursive=TRUE)
 files```
 
--* Some result similar to the following will be displayed after execution*
--* [1] "activity_labels.txt"                         *
--* [2] "features.txt"                                *
--* [3] "features_info.txt"                           *
-* [4] "README.txt"                                  *
-* [5] "test/Inertial Signals/body_acc_x_test.txt"   *
-* [6] "test/Inertial Signals/body_acc_y_test.txt"   *
-* [7] "test/Inertial Signals/body_acc_z_test.txt"   *
-* [8] "test/Inertial Signals/body_gyro_x_test.txt"  *
-* [9] "test/Inertial Signals/body_gyro_y_test.txt"  *
-* [10] "test/Inertial Signals/body_gyro_z_test.txt"  *
-* [11] "test/Inertial Signals/total_acc_x_test.txt"  *
-* [12] "test/Inertial Signals/total_acc_y_test.txt"  *
-* [13] "test/Inertial Signals/total_acc_z_test.txt"  *
-* [14] "test/subject_test.txt"                       *
-* [15] "test/X_test.txt"                             *
-* [16] "test/y_test.txt"                             *
-* [17] "train/Inertial Signals/body_acc_x_train.txt" *
-* [18] "train/Inertial Signals/body_acc_y_train.txt" *
-* [19] "train/Inertial Signals/body_acc_z_train.txt" *
-* [20] "train/Inertial Signals/body_gyro_x_train.txt"*
-* [21] "train/Inertial Signals/body_gyro_y_train.txt"*
-* [22] "train/Inertial Signals/body_gyro_z_train.txt"*
-* [23] "train/Inertial Signals/total_acc_x_train.txt"*
-* [24] "train/Inertial Signals/total_acc_y_train.txt"*
-* [25] "train/Inertial Signals/total_acc_z_train.txt"*
-* [26] "train/subject_train.txt"                     *
-* [27] "train/X_train.txt"                           *
+* Some result similar to the following will be displayed after execution*
+* [1] "activity_labels.txt"                         
+* [2] "features.txt"                                
+* [3] "features_info.txt"                           
+* [4] "README.txt"                                  
+* [5] "test/Inertial Signals/body_acc_x_test.txt"   
+* [6] "test/Inertial Signals/body_acc_y_test.txt"   
+* [7] "test/Inertial Signals/body_acc_z_test.txt"   
+* [8] "test/Inertial Signals/body_gyro_x_test.txt"  
+* [9] "test/Inertial Signals/body_gyro_y_test.txt"  
+* [10] "test/Inertial Signals/body_gyro_z_test.txt"  
+* [11] "test/Inertial Signals/total_acc_x_test.txt"  
+* [12] "test/Inertial Signals/total_acc_y_test.txt"  
+* [13] "test/Inertial Signals/total_acc_z_test.txt"  
+* [14] "test/subject_test.txt"                       
+* [15] "test/X_test.txt"                             
+* [16] "test/y_test.txt"                             
+* [17] "train/Inertial Signals/body_acc_x_train.txt" 
+* [18] "train/Inertial Signals/body_acc_y_train.txt" 
+* [19] "train/Inertial Signals/body_acc_z_train.txt" 
+* [20] "train/Inertial Signals/body_gyro_x_train.txt"
+* [21] "train/Inertial Signals/body_gyro_y_train.txt"
+* [22] "train/Inertial Signals/body_gyro_z_train.txt"
+* [23] "train/Inertial Signals/total_acc_x_train.txt"
+* [24] "train/Inertial Signals/total_acc_y_train.txt"
+* [25] "train/Inertial Signals/total_acc_z_train.txt"
+* [26] "train/subject_train.txt"                     
+* [27] "train/X_train.txt"                           
 * [28] "train/y_train.txt" *
 
-*     FURTHER NOTES ON THE DATA FROM THE ASSIGNMENT EXPLANATIONS*
-* From the picture and the related files, we can see: *
-* Reference link: https://class.coursera.org/getdata-008/forum/thread?thread_id=24  *
-* Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"*
-* values of Varible Subject consist of data from "subject_train.txt" and subject_test.txt"*
-* Values of Varibles Features consist of data from "X_train.txt" and "X_test.txt"*
-* Names of Varibles Features come from "features.txt"*
-* levels of Varible Activity come from "activity_labels.txt"*
-* So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame. *
+*FURTHER NOTES ON THE DATA FROM THE ASSIGNMENT EXPLANATIONS
+>From the picture and the related files, we can see:
+>Reference link: https://class.coursera.org/getdata-008/forum/thread?thread_id=24 
+>Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"
+>values of Varible Subject consist of data from "subject_train.txt" and subject_test.txt"
+> Values of Varibles Features consist of data from "X_train.txt" and "X_test.txt"
+> Names of Varibles Features come from "features.txt"
+>levels of Varible Activity come from "activity_labels.txt"
+>So we will use Activity, Subject and Features as part of descriptive variable names for data in data frame.*
+
 #####  ACT:  Read data from the files and assign to objects*
 ```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')
 dataActivityTest  <- read.table(file.path( ".", "test" , "Y_test.txt" ),col.names='Activity.Id') ```
