@@ -12,7 +12,7 @@ setwd('C:/CourseraR')
 *Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'*
 
 ```if (!file.exists('UCI HAR Dataset')) { warning("File does not exist: unzipping the file ' dataset.zip '")
-  unzip('dataset.zip')}```
+  unzip('dataset.zip')}```  
   ```else {warning("Folder 'UCI HAR Dataset' already unzipped - moving forward ")}```
   
 *unzipped files are in the folder UCI HAR Dataset.*
@@ -75,12 +75,12 @@ Levels of Varible Activity come from "activity_labels.txt"*
 
 #####  ACT:  Read data from the files and assign to objects
 
-```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')  
-dataActivityTest  <- read.table(file.path( ".", "test" , "Y_test.txt" ),col.names='Activity.Id') ```
-```dataSubjectTrain <- read.table(file.path(".", "train", "subject_train.txt"),col.names='Subject.Id')  
-dataSubjectTest  <- read.table(file.path(".", "test" , "subject_test.txt"),col.names='Subject.Id') ```
-```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)  
-dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE) ```
+```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')    
+dataActivityTest  <- read.table(file.path( ".", "test" , "Y_test.txt" ),col.names='Activity.Id') ```  
+```dataSubjectTrain <- read.table(file.path(".", "train", "subject_train.txt"),col.names='Subject.Id')    
+dataSubjectTest  <- read.table(file.path(".", "test" , "subject_test.txt"),col.names='Subject.Id') ```  
+```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)    
+dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE) ```  
 
 #### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
 #####  ACT:  Bind the datasets
