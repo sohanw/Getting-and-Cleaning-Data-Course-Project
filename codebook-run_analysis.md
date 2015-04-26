@@ -13,19 +13,27 @@ else { warning("Already Downloaded from the given URL and dataset.zip is in work
 
 ```if (!file.exists('UCI HAR Dataset')) { warning("File does not exist: unzipping the file ' dataset.zip '")
   unzip('dataset.zip')} else {warning("Folder 'UCI HAR Dataset' already unzipped - moving forward ")}```
+  
 *unzipped files are in the folder UCI HAR Dataset.* 
+
 #####  ACT: Change the working directory to suit the data folder. ensure the working directory is correct
+
 ```setwd('UCI HAR Dataset')
 getwd()```
+
 * The following will be displayed after execution*
+
 * [1] "C:/CourseraR/UCI HAR Dataset"*
+* 
 #####  ACT: Get the list of files
+
 ```files  <- list.files( "." , recursive=TRUE)
 files```
-* Some result similar to the following will be displayed after execution*
-* [1] "activity_labels.txt"                         *
-* [2] "features.txt"                                *
-* [3] "features_info.txt"                           *
+
+-* Some result similar to the following will be displayed after execution*
+-* [1] "activity_labels.txt"                         *
+-* [2] "features.txt"                                *
+-* [3] "features_info.txt"                           *
 * [4] "README.txt"                                  *
 * [5] "test/Inertial Signals/body_acc_x_test.txt"   *
 * [6] "test/Inertial Signals/body_acc_y_test.txt"   *
