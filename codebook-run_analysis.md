@@ -28,10 +28,10 @@ getwd()```
  
 #####  ACT: Get the list of files
 
-```files  <- list.files( "." , recursive=TRUE)
-files```
+```files  <- list.files( "." , recursive=TRUE)```  
+```files```  
 
-*Some result similar to the following will be displayed after execution*
+*A result similar to the following will be displayed after execution*
 
 * [1] "activity_labels.txt"                         
 * [2] "features.txt"                                
@@ -62,7 +62,7 @@ files```
 * [27] "train/X_train.txt"                           
 * [28] "train/y_train.txt" *
 
-*FURTHER NOTES ON THE DATA FROM THE ASSIGNMENT EXPLANATIONS*
+*FURTHER NOTES ON THE DATA FROM THE ASSIGNMENT EXPLANATIONS*  
 
 *From the picture and the related files, we can see:  Reference link: https://class.coursera.org/getdata-008/forum/thread?thread_id=24  
 Values of Varible Activity consist of data from "Y_train.txt" and "Y_test.txt"  
@@ -88,26 +88,26 @@ Levels of Varible Activity come from "activity_labels.txt"*
 ```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```  
 ```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ```  
 #####  ACT:  Set names to variables
-```names(dataSubject)<-c("subject")```  
-```names(dataActivity)<- c("activity")```  
-```dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE)```  
-```names(dataFeatures) <- dataFeaturesNames$V2```  
+```names(dataSubject)<-c("subject")```    
+```names(dataActivity)<- c("activity")```    
+```dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE)```    
+```names(dataFeatures) <- dataFeaturesNames$V2```    
 #####  ACT: Merge columns to get the dataframe 'Data' for all data
-```dataCombine <- cbind(dataSubject, dataActivity)
-Data <- cbind(dataFeatures, dataCombine) ```
+```dataCombine <- cbind(dataSubject, dataActivity)```   
+Data <- cbind(dataFeatures, dataCombine) ```  
 #####  ACT:  subset name of Features by measurements on the mean and std dev
-```subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```
+```subdataFeaturesNames<-dataFeaturesNames$V2[grep("mean\\(\\)|std\\(\\)", dataFeaturesNames$V2)] ```  
 #####  ACT:  subset the dataframe "data" by selected names of features
-```SelectedNames  <- c(as.character(subdataFeaturesNames), "subject", "activity")
-Data <- subset(Data, select=SelectedNames) ```
+```SelectedNames  <- c(as.character(subdataFeaturesNames), "subject", "activity")```   
+```Data <- subset(Data, select=SelectedNames) ```  
 #####  ACT:  Check the structure of the dataframe "Data"
-```str(Data) ```
-*A similar result to The following will appear after execution
-'data.frame':  10299 obs. of  68 variables:
-$ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...
-$ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...
-###  ......
-###  ......*
+```str(Data) ```  
+*A similar result to The following will appear after execution  
+'data.frame':  10299 obs. of  68 variables:  
+$ tBodyAcc-mean()-X          : num  0.289 0.278 0.28 0.279 0.277 ...  
+$ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...  
+###  ......  
+###  ......*  
 #####  ACT: Read Descriptive Activity Names
 ```activityLabels  <- read.table(file.path(".","activity_labels.txt"), col.names=c('Activity.Id', 'Activity')) ```
 #####  ACT: check the names and activity id
