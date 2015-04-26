@@ -3,7 +3,7 @@
 *This makes an attempt to explain the actions in the R Script*
 ##### Download the file and save as dataset.zip
 ######  Getting and Cleaning Data Course Project: R script called run_analysis.R
-*setwd('C:/CourseraR'*
+`setwd('C:/CourseraR')`  
 #####  ACT: Download the file  unzip to the folder and save as dataset.zip
 
 ``` if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',destfile='dataset.zip')} ```  
