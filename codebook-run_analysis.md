@@ -75,23 +75,23 @@ Levels of Varible Activity come from "activity_labels.txt"*
 
 #####  ACT:  Read data from the files and assign to objects
 
-```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')    
-dataActivityTest  <- read.table(file.path( ".", "test" , "Y_test.txt" ),col.names='Activity.Id') ```  
-```dataSubjectTrain <- read.table(file.path(".", "train", "subject_train.txt"),col.names='Subject.Id')    
-dataSubjectTest  <- read.table(file.path(".", "test" , "subject_test.txt"),col.names='Subject.Id') ```  
-```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)    
-dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE) ```  
+```dataActivityTrain <- read.table(file.path("." , "train", "Y_train.txt"),col.names='Activity.Id')```      
+```dataActivityTest  <- read.table(file.path( ".", "test" , "Y_test.txt" ),col.names='Activity.Id')```    
+```dataSubjectTrain <- read.table(file.path(".", "train", "subject_train.txt"),col.names='Subject.Id')```      
+```dataSubjectTest  <- read.table(file.path(".", "test" , "subject_test.txt"),col.names='Subject.Id')```    
+```dataFeaturesTest  <- read.table(file.path(".", "test" , "X_test.txt" ),header = FALSE)```      
+```dataFeaturesTrain <- read.table(file.path(".", "train", "X_train.txt"),header = FALSE)```    
 
-#### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
+##### MERGE THE TRAINING AND TEST SETS TO CREATE ONE DATA SET
 #####  ACT:  Bind the datasets
-```dataActivity <- rbind(dataActivityTrain, dataActivityTest)
-dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)
-dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ```
+```dataActivity <- rbind(dataActivityTrain, dataActivityTest)```  
+```dataSubject <- rbind(dataSubjectTrain, dataSubjectTest)```  
+```dataFeatures <- rbind(dataFeaturesTrain, dataFeaturesTest) ```  
 #####  ACT:  Set names to variables
-```names(dataSubject)<-c("subject")
-names(dataActivity)<- c("activity")
-dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE)
-names(dataFeatures) <- dataFeaturesNames$V2```
+```names(dataSubject)<-c("subject")```  
+```names(dataActivity)<- c("activity")```  
+```dataFeaturesNames <- read.table(file.path(".","features.txt"), head=FALSE)```  
+```names(dataFeatures) <- dataFeaturesNames$V2```  
 #####  ACT: Merge columns to get the dataframe 'Data' for all data
 ```dataCombine <- cbind(dataSubject, dataActivity)
 Data <- cbind(dataFeatures, dataCombine) ```
