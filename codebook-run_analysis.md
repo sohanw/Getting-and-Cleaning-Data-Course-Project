@@ -19,15 +19,14 @@ setwd('C:/CourseraR')
 
 #####  ACT: Change the working directory to suit the data folder. ensure the working directory is correct
 
-```setwd('UCI HAR Dataset')```   
+``` setwd('UCI HAR Dataset') ```   
+``` getwd() ```   
 
-getwd()  
 
+```files  <- list.files( "." , recursive=TRUE) ```  
 
-```files  <- list.files( "." , recursive=TRUE)```  
-
-files 
-
+``` files ```   
+  
 *A result similar to the following will be displayed after execution*  
 
 
