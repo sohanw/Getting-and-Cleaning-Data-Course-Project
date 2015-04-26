@@ -1,16 +1,13 @@
+
+
+
+## Getting and Cleaning Data Course Project the CODE BOOK for,
+## R script called run_analysis.R
 This makes an attempt to explain the actions in the R Script called run_analysis.R
-
-
-Getting and Cleaning Data Course Project the CODE BOOK for,
-R script called run_analysis.R
-
-
-## Download the file and save as dataset.zip
+##### Download the file and save as dataset.zip
+######  Getting and Cleaning Data Course Project: R script called run_analysis.R
 setwd('C:/CourseraR')
-##  Getting and Cleaning Data Course Project 
-##  R script called run_analysis.R
-setwd('C:/CourseraR')
-####  ACT: Download the file  unzip to the folder and save as dataset.zip
+#####  ACT: Download the file  unzip to the folder and save as dataset.zip
 ##------------------------------------------------------------------
 if (!file.exists('dataset.zip')) {
 download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',
