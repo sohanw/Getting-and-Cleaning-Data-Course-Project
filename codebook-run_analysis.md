@@ -111,12 +111,12 @@ $ tBodyAcc-mean()-Y          : num  -0.0203 -0.0164 -0.0195 -0.0262 -0.0166 ...
 ``` head(activityLabels) ```
 *The following will appear after execution*  
 *   Activity.Id           Activity
-*   1           1            WALKING
-*   2           2   WALKING_UPSTAIRS
-*   3           3 WALKING_DOWNSTAIRS
-*   4           4            SITTING
-*   5           5           STANDING
-*   6           6             LAYING
+*   1    1            WALKING
+*   2              2   WALKING_UPSTAIRS
+*   3              3 WALKING_DOWNSTAIRS
+*   4              4            SITTING
+*   5              5           STANDING
+*   6              6             LAYING
 ####  ACT: Appropriately Labelling the dataset with descrptive variable names
 ``` names(Data)<-gsub("^t", "time", names(Data)) ```  
 ``` names(Data)<-gsub("^f", "frequency", names(Data)) ```
