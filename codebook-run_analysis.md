@@ -9,8 +9,8 @@
 setwd('C:/CourseraR')
 #####  ACT: Download the file  unzip to the folder and save as dataset.zip
 
-**if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',destfile='dataset.zip')} 
-else { warning("Already Downloaded from the given URL and dataset.zip is in working dir: Moving to Unzip! ")}**
+```if (!file.exists('dataset.zip')) {download.file('https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip',destfile='dataset.zip')} 
+else { warning("Already Downloaded from the given URL and dataset.zip is in working dir: Moving to Unzip! ")}```
 
 *Zip file contains a folder called 'UCI HAR Dataset' if not unzipped then this folder would not be there.  If so, Unzip the downloaded file 'dataset.zip'*
 
